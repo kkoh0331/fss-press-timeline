@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>금감원 보험 보도자료 타임라인</title>
+<style>
+ body{font-family:sans-serif;max-width:700px;margin:40px auto}
+ .item{border-left:3px solid #3b82f6;padding:0 0 20px 16px;margin-left:8px}
+ .date{color:#888;font-size:13px}
+</style></head><body>
+<h1>금감원 보험 보도자료</h1><div id="list"></div>
+<script>
+fetch("data/press.json").then(r=>r.json()).then(d=>{
+  document.getElementById("list").innerHTML = d.map(i =>
+    `<div class="item"><div class="date">${i.date}</div>
+     <a href="${i.link}" target="_blank">${i.title}</a></div>`).join("");
+});
+</script></body></html>
