@@ -1,4 +1,5 @@
 import json, requests
+from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 URL = "https://www.fss.or.kr/fss/bbs/B0000188/list.do?menuNo=200218"
@@ -16,7 +17,7 @@ def fetch():
         items.append({
             "title": a.get_text(strip=True),
             "date": row.select("td")[-1].get_text(strip=True),  # 수정 필요
-            "link": a["href"],
+            "link": urljoin(URL, a["href"]),
         })
     return [i for i in items if any(k in i["title"] for k in KEYWORDS)]
 
@@ -26,6 +27,8 @@ if __name__ == "__main__":
         old = json.load(open("data/press.json", encoding="utf-8"))
     except FileNotFoundError:
         old = []
+        for i in old:
+            i["link"] = urljoin(URL, i["link"])
     merged = {i["link"]: i for i in old + new}.values()
     merged = sorted(merged, key=lambda x: x["date"], reverse=True)
     json.dump(list(merged), open("data/press.json", "w", encoding="utf-8"),
