@@ -1,7 +1,7 @@
 import json, requests
 from bs4 import BeautifulSoup
 
-URL = "여기에_보도자료_목록_주소"
+URL = "https://www.fss.or.kr/fss/bbs/B0000188/list.do?menuNo=200218"
 KEYWORDS = ["보험", "손해보험", "생명보험", "K-ICS", "지급여력"]
 
 def fetch():
