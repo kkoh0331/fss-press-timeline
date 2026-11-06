@@ -8,7 +8,7 @@ LIST_URL = (
     "&sdate=&edate=&searchCnd=1&searchWrd="
 )
 KEYWORDS = ["보험", "손해보험", "생명보험", "K-ICS", "지급여력"]
-MAX_PAGES = int(os.environ.get("MAX_PAGES", "3"))
+MAX_PAGES = int(os.environ.get("MAX_PAGES", "30"))
 DATA_FILE = "data/press.json"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 DATE_RE = re.compile(r"(\d{2,4})[-./]\s*(\d{1,2})[-./]\s*(\d{1,2})")
