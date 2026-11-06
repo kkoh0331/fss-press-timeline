@@ -27,8 +27,8 @@ if __name__ == "__main__":
         old = json.load(open("data/press.json", encoding="utf-8"))
     except FileNotFoundError:
         old = []
-        for i in old:
-            i["link"] = urljoin(URL, i["link"])
+    for i in old:
+        i["link"] = urljoin(URL, i["link"])
     merged = {i["link"]: i for i in old + new}.values()
     merged = sorted(merged, key=lambda x: x["date"], reverse=True)
     json.dump(list(merged), open("data/press.json", "w", encoding="utf-8"),
